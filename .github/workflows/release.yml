@@ -7,12 +7,6 @@ jobs:
     name: Build docker image
     runs-on: ubuntu-latest
     steps:
-      - name: Test
-        run: pwd
-  
-      - name: x
-        run: ls -ali /home/runner/work/dockerhub-builder/
-    
       - name: Fetch current build repo
         uses: actions/checkout@v4  
         with:
@@ -26,4 +20,4 @@ jobs:
         run: printf "${{secrets.DOT_ENV}}" > ./worker/.env
 
       - name: Setup docker image for dynamic build workers
-        run: docker compose up --build worker
+        run: docker compose up --build worker --progress=plain

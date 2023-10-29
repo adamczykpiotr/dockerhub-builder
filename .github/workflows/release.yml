@@ -20,4 +20,4 @@ jobs:
         run: printf "${{secrets.DOT_ENV}}" > ./worker/.env
 
       - name: Setup docker image for dynamic build workers
-        run: docker compose up --build worker --progress=plain
+        run: docker compose up --build worker -q

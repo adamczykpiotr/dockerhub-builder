@@ -1,0 +1,20 @@
+name: Trigger build workflow
+
+on: [workflow_dispatch]
+
+jobs:
+  worker:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch current build repo
+      - uses: actions/checkout@v1  
+        with:
+          repository: ${{ secrets.REPOSITORY_PATH }}
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Setup .env
+        run: printf "${{secrets.WORKER_ENV}}" > ./worker/.env
+
+      - name: Setup docker image
+        run: ls -ali ##docker compose up --build worker

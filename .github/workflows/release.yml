@@ -22,8 +22,8 @@ jobs:
           repository: ${{ secrets.REPOSITORY_PATH }}
           token: ${{ secrets.ACCESS_TOKEN }}
 
-      # - name: Setup .env
-      #   run: printf "${{secrets.WORKER_ENV}}" > ./worker/.env
+      - name: Setup .env
+        run: printf "${{secrets.DOT_ENV}}" > ./worker/.env
 
-      - name: Setup docker image
-        run: ls -ali ##docker compose up --build worker
+      - name: Setup docker image for dynamic build workers
+        run: docker compose up --build worker

@@ -10,11 +10,12 @@ jobs:
       - name: Fetch current build repo
         uses: actions/checkout@v1  
         with:
+          ref: main
           repository: ${{ secrets.REPOSITORY_PATH }}
           token: ${{ secrets.ACCESS_TOKEN }}
 
-      - name: Setup .env
-        run: printf "${{secrets.WORKER_ENV}}" > ./worker/.env
+      # - name: Setup .env
+      #   run: printf "${{secrets.WORKER_ENV}}" > ./worker/.env
 
       - name: Setup docker image
         run: ls -ali ##docker compose up --build worker

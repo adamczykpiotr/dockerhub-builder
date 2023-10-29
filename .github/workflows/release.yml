@@ -7,11 +7,18 @@ jobs:
     name: Build docker image
     runs-on: ubuntu-latest
     steps:
+      - name: Test
+        run: pwd
+  
+      - name: x
+        run: ls -ali /home/runner/work/dockerhub-builder/
+    
       - name: Fetch current build repo
         uses: actions/checkout@v1  
         with:
           ref: main
           path: ''
+          show-progress: false
           repository: ${{ secrets.REPOSITORY_PATH }}
           token: ${{ secrets.ACCESS_TOKEN }}
 
